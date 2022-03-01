@@ -203,10 +203,11 @@
 
         function updateWatermark() {
             var d = new Date();
-            var t = d.toLocaleString();
+            var t = d.format("yyyy/M/d");
             var hour = d.getHours();
-            if (hour < 12) t = t.replace(" ", "上午");
-            else t = t.replace(" ", "下午");
+            if (hour < 12) t += "上午";
+            else t += "下午";
+            t += d.format("hh:mm:ss");
             $w.html(t).css({
                 top: $wt + '%'
             });
