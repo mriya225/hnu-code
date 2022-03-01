@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,user-scalable=no,shrink-to-fit=no,viewport-fit=cover">
+    <title>师大移动学工用户中心</title>
+    <link href="./src/weui.css" rel="stylesheet">
+    <link href="./src/bootstrap.css" rel="stylesheet">
+    <link href="./src/style.css" rel="stylesheet">
+    <link href="./src/line-awesome-nob.css" rel="stylesheet">
+    <script src="./src/jquery.js"></script>
+    <script src="./src/weui.js"></script>
+    <script src="./src/app.js"></script>
+    <link rel="stylesheet" href="./src/helper.css">
+    <link rel="stylesheet" href="./src/main_vue.css">
+    <style>
+        .time-table th, .bottom-table th {
+            font-weight: normal;
+            color: #666;
+            text-align: right;
+            vertical-align: middle;
+        }
+
+        .time-table td {
+            width: 220px;
+        }
+
+        .time-table p {
+            margin-bottom: 0 !important;
+        }
+
+        .time-table {
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .bottom-table {
+            width: auto;
+            font-size: 16px;
+            text-align: left;
+            margin: 0 auto;
+        }
+
+        #approved_icon {
+            position: absolute;
+            right: -15px;
+            top: -15px;
+            width: 110px;
+            z-index: 100;
+            display: none;
+        }
+
+        .bg-light-danger {
+            background-color: rgba(255, 0, 0, 0.15);
+        }
+
+        .bg-light-success {
+            background-color: #c5ffc5;
+        }
+
+        @keyframes stamp {
+            from {
+                right: -90px;
+                width: 200px;
+                opacity: 0.5;
+            }
+            to {
+                right: -15px;
+                width: 110px;
+                opacity: 1;
+            }
+        }
+
+
+        #watermark {
+            position: absolute;
+            font-size: 5em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2em;
+            top: 57%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            color: rgba(0, 0, 0, 0.08);
+        }
+    </style>
+</head>
+
+<body class="color-theme-blue push-content-right theme-light">
+<div class="wrapper">
+    <div class="page vue-loading" style="position: absolute;overflow-y: auto">
+        <div id="content">
+            <header class="row m-0 fixed-header">
+                <div class="left">
+                    <a href="./back.html"><i class="la la-arrow-left"></i></a>
+                </div>
+                <div class="col center">
+                    <a href="javascript:void(0);" class="logo">
+                        出示假条
+                    </a>
+                </div>
+            </header>
+            <div class="page-content">
+                <div style="padding:0 15px;">
+                    <div class="card mt-15">
+                        <div class="card-body ">
+                            <div class="card-text relative text-dark">
+                                <p class="h2 text-center text-dark font-weight-light">
+                                    请假条
+                                </p>
+
+                                <img id="approved_icon"
+                                     src="./src/approved.png"
+                                     alt=""
+                                     style="animation: 0.3s ease-in 0s 1 normal none running stamp; display: inline;">
+
+                                <div class="row mt-30 mb-20">
+                                    <div class="col d-flex flex-column justify-content-center align-items-center">
+                                        <figure class="figure mb-0">
+                                            <img id="ip6"
+                                                 class="figure-img img-fluid rounded"
+                                                 alt="">
+                                        </figure>
+                                    </div>
+                                    <div class="col d-flex flex-column justify-content-center pl-0">
+                                        <p class="h5 mb-15 mt-5 text-dark" id="ip1"><span class="h6">姓名：</span></p>
+                                        <p class="h6 mb-10 font-weight-normal" id="ip2">性别：</p>
+                                        <p class="h6 mb-10 font-weight-normal" id="ip3">院系：</p>
+                                        <p class="h6 mb-10 font-weight-normal" id="ip4">学号：</p>
+                                    </div>
+                                </div>
+
+                                <p class="h6 font-weight-normal">请假时间</p>
+                                <table class="table time-table text-center">
+                                    <tbody>
+                                    <tr>
+                                        <th>起</th>
+                                        <td><p class="h3 font-weight-light text-dark" id="time1"
+                                               style="color: #27292b !important;"></p></td>
+                                        <th><span class="invisible">起</span></th>
+                                    </tr>
+                                    <tr>
+                                        <th>至</th>
+                                        <td><p class="h3 font-weight-light text-dark" id="time2"
+                                               style="color: #27292b !important;"></p></td>
+                                        <th><span class="invisible">至</span></th>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+
+                                <div class="text-center text-danger mt-20 mb--10 font-24">
+                                    离校不出市
+                                </div>
+
+                                <div class="text-center">
+                                    <table class="table bottom-table table-sm table-borderless mt-30">
+                                        <tbody>
+                                        <tr>
+                                            <th style="color: #64686a !important;">审批人：</th>
+                                            <td id="ip5" class="text-dark" style="color: #393c3d !important;"></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #64686a !important;">批准时间：</th>
+                                            <td class="text-dark" id="time3" style="color: #393c3d !important;"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="watermark" style="top: 71%;">2022/3/1 09:39:24</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-20 mb-30">
+                        <a href="javascript:" class="link p-10" onclick="backToSchool()">
+                            点击返校
+                            <i class="la la-angle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./src/date.js"></script>
+<script>
+    function backToSchool() {
+        weui.confirm('是否出示返校卡？出示后无法撤销返校状态！', function () {
+        });
+    }
+
+    window.onload = function () {
+        $('#approved_icon').css({
+            animation: '0.3s ease-in stamp'
+        }).show();
+
+        var $w = $('#watermark');
+        var $wt = 57;
+        var $ws = 1;
+
+        function updateWatermark() {
+            var d = new Date();
+            var t = d.toLocaleString();
+            $w.html(t).css({
+                top: $wt + '%'
+            });
+            if ($wt > 75) {
+                $ws = -1;
+            }
+            else if ($wt < 57) {
+                $ws = 1;
+            }
+            $wt += $ws;
+        }
+
+        updateWatermark();
+        setInterval(updateWatermark, 1000);
+
+        // IP
+        const ip1 = document.querySelector('#ip1');
+        const ip2 = document.querySelector('#ip2');
+        const ip3 = document.querySelector('#ip3');
+        const ip4 = document.querySelector('#ip4');
+        const ip5 = document.querySelector('#ip5');
+        const ip6 = document.querySelector('#ip6');
+        const time1 = document.querySelector('#time1');
+        const time2 = document.querySelector('#time2');
+        const time3 = document.querySelector('#time3');
+
+        // 初始化
+        const gip1 = localStorage.getItem('ip1');
+        const gip2 = localStorage.getItem('ip2');
+        const gip3 = localStorage.getItem('ip3');
+        const gip4 = localStorage.getItem('ip4');
+        const gip5 = localStorage.getItem('ip5');
+        const gip6 = localStorage.getItem('ip6');
+        if (gip1 != null) ip1.innerHTML += gip1;
+        if (gip2 != null) ip2.innerHTML += gip2;
+        if (gip3 != null) ip3.innerHTML += gip3;
+        if (gip4 != null) ip4.innerHTML += gip4;
+        if (gip5 != null) ip5.innerHTML += gip5;
+        if (gip6 != null) ip6.src = gip6;
+
+        time1.innerText = new Date().format("yyyy-MM-dd") + " 上午";
+        time2.innerText = new Date().format("yyyy-MM-dd") + " 下午";
+        let date = new Date();
+        date.setTime(date.getTime() - (28 * 60 * 1000));
+        time3.innerText = date.format("yyyy-MM-dd hh:mm");
+    }
+</script>
+</body>
+</html>

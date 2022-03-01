@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,user-scalable=no,shrink-to-fit=no,viewport-fit=cover">
+    <title>师大移动学工用户中心</title>
+    <link href="./src/weui.css" rel="stylesheet">
+    <link href="./src/bootstrap.css" rel="stylesheet">
+    <link href="./src/style.css" rel="stylesheet">
+    <link href="./src/line-awesome-nob.css" rel="stylesheet">
+    <link rel="stylesheet" href="./src/helper.css">
+    <link rel="stylesheet" href="./src/main_vue.css">
+</head>
+
+<body class="color-theme-blue push-content-right theme-light">
+<div class="wrapper">
+    <div class="page" style="position: absolute;overflow-y: auto">
+        <div id="content">
+            <header class="row m-0 fixed-header">
+                <div class="left"><a href="#"><i class="la la-arrow-left"></i></a>
+                </div>
+                <div class="col center"><a href="#" class="logo">请假</a></div>
+            </header>
+            <div class="page-content">
+                <div style="padding: 0 15px;">
+                    <div class="weui-cells__title">
+                        <div class="mh--15"><a href="#"
+                                               class="btn btn-link btn-block mb-30 btn-lg bg-white"><i
+                                class="la la-plus"></i> 新建请假申请
+                        </a></div>
+                        <strong id="ip1"></strong> 提交的请假申请
+                    </div>
+                    <div class="weui-cells weui-cells_separated weui-cells_rounded mb-20"><a
+                            href="./code.html" class="weui-cell weui-cell_access">
+                        <div class="weui-cell__bd">
+                            <div class="weui-cell__bd__hd" id="ip7"></div>
+                            <div class="weui-cell__bd__bd" id="ip8">请假原因:&nbsp;</div>
+                            <div class="weui-cell__bd__bd" id="time1">请假时间:&nbsp;</div>
+                            <div class="weui-cell__bd__bd" id="time2">申请时间:&nbsp;</div>
+                            <div class="weui-cell__bd__bd" id="ip5">审核人:&nbsp;</div>
+                            <div class="weui-cell__bd__bd_status"><span class="green">通过"老师审核"</span> <span
+                                    class="text-primary pull-right link">出示假条</span></div>
+                        </div>
+                        <div class="weui-cell__ft"></div>
+                    </a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="./src/date.js"></script>
+<script>
+    window.onload = function () {
+        const ip1 = document.querySelector('#ip1');
+        const ip5 = document.querySelector('#ip5');
+        const ip7 = document.querySelector('#ip7');
+        const ip8 = document.querySelector('#ip8');
+        const time1 = document.querySelector('#time1');
+        const time2 = document.querySelector('#time2');
+
+        // 初始化
+        const gip1 = localStorage.getItem('ip1');
+        const gip4 = localStorage.getItem('ip4');
+        const gip5 = localStorage.getItem('ip5');
+        const gip7 = localStorage.getItem('ip7');
+        const gip8 = localStorage.getItem('ip8');
+        if (gip1 != null) ip1.innerHTML += `${gip1} (${gip4})`;
+        if (gip5 != null) ip5.innerHTML += gip5;
+        if (gip7 != null) ip7.innerHTML += gip7;
+        if (gip8 != null) ip8.innerHTML += gip8;
+
+        let date = new Date();
+        time1.innerHTML += date.format("yyyy-MM-dd hh:mm") + " ~ ";
+        date.setTime(date.getTime() + (180 * 60 * 1000));
+        time1.innerHTML += date.format("yyyy-MM-dd hh:mm");
+
+        let date2 = new Date();
+        date2.setTime(date2.getTime() - (40 * 60 * 1000));
+        time2.innerHTML += date2.format("yyyy年MM月dd日 hh:mm");
+    }
+</script>
+</body>
+</html>

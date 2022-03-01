@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,user-scalable=no,shrink-to-fit=no,viewport-fit=cover">
+    <title>师大移动学工用户中心</title>
+    <style>
+        body {
+            min-width: 320px;
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 2rem 0;
+            overflow-x: hidden;
+            background-color: #fefefe;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /*.main {
+            transform: translateY(10%);
+        }*/
+
+        .main .item {
+            width: 18rem;
+            background-color: #f2f3f6;
+            border-radius: 2.4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto .96rem;
+            padding: .5rem 0;
+        }
+
+        .main .item input {
+            background-color: rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            border: none;
+            width: 80%;
+            flex: 0.5;
+            outline: none;
+        }
+
+        .main .item input[type="file"] {
+            font-size: 1rem;
+        }
+
+        .main img {
+            text-align: center;
+            width: 4.8rem;
+            height: 4.8rem;
+            display: inline-block;
+            margin: 2rem auto 0;
+            object-fit: contain;
+        }
+
+        .main .alert {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+<div class="main">
+    <label class="item"><input type="text" id="ip1" placeholder="姓名"></label>
+    <label class="item"><input type="text" id="ip2" placeholder="性别"></label>
+    <label class="item"><input type="text" id="ip3" placeholder="院系"></label>
+    <label class="item"><input type="text" id="ip4" placeholder="学号"></label>
+    <label class="item"><input type="text" id="ip5" placeholder="审批人"></label>
+    <label class="item"><input type="text" id="ip7" placeholder="请假类型" value="事假"></label>
+    <label class="item"><input type="text" id="ip8" placeholder="请假原因"></label>
+    <label class="item"><input type="file" id="ip6" placeholder="头像" accept="image/*"></label>
+    <span class="alert">已选择过头像，可不选！</span>
+    <img id="img" src="./src/next-button.png" alt="">
+</div>
+
+<script>
+    window.onload = function () {
+        const btn = document.querySelector('#img');
+        const ip1 = document.querySelector('#ip1');
+        const ip2 = document.querySelector('#ip2');
+        const ip3 = document.querySelector('#ip3');
+        const ip4 = document.querySelector('#ip4');
+        const ip5 = document.querySelector('#ip5');
+        const ip6 = document.querySelector('#ip6');
+        const ip7 = document.querySelector('#ip7');
+        const ip8 = document.querySelector('#ip8');
+        const alert = document.querySelector('.alert');
+
+        // 初始化
+        const gip1 = localStorage.getItem('ip1');
+        const gip2 = localStorage.getItem('ip2');
+        const gip3 = localStorage.getItem('ip3');
+        const gip4 = localStorage.getItem('ip4');
+        const gip5 = localStorage.getItem('ip5');
+        const gip6 = localStorage.getItem('ip6');
+        const gip7 = localStorage.getItem('ip7');
+        const gip8 = localStorage.getItem('ip8');
+        if (gip1 != null) ip1.value = gip1;
+        if (gip2 != null) ip2.value = gip2;
+        if (gip3 != null) ip3.value = gip3;
+        if (gip4 != null) ip4.value = gip4;
+        if (gip5 != null) ip5.value = gip5;
+        if (gip6 != null) alert.style.display = 'block';
+        if (gip7 != null) ip7.value = gip7;
+        if (gip8 != null) ip8.value = gip8;
+
+        // 选择文件
+        ip6.addEventListener("change", function () {
+            if (this.files.length) {
+                let file = this.files[0];
+                let reader = new FileReader();
+                reader.onload = function () {
+                    const val_6 = this.result;
+                    localStorage.setItem('ip6', val_6);
+                };
+                reader.readAsDataURL(file);
+            }
+        })
+
+        // 点击
+        btn.addEventListener('click', function () {
+            const val_1 = ip1.value;
+            const val_2 = ip2.value;
+            const val_3 = ip3.value;
+            const val_4 = ip4.value;
+            const val_5 = ip5.value;
+            const val_7 = ip7.value;
+            const val_8 = ip8.value;
+            localStorage.setItem('ip1', val_1);
+            localStorage.setItem('ip2', val_2);
+            localStorage.setItem('ip3', val_3);
+            localStorage.setItem('ip4', val_4);
+            localStorage.setItem('ip5', val_5);
+            localStorage.setItem('ip7', val_7);
+            localStorage.setItem('ip8', val_8);
+            location.replace('./code.html');
+        });
+    }
+</script>
+</body>
+</html>
