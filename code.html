@@ -75,7 +75,7 @@
 
         #watermark {
             position: absolute;
-            font-size: 5em;
+            font-size: 4.6em;
             font-weight: bold;
             text-align: center;
             line-height: 1.2em;
@@ -204,6 +204,9 @@
         function updateWatermark() {
             var d = new Date();
             var t = d.toLocaleString();
+            var hour = d.getHours();
+            if (hour < 12) t = t.replace(" ", "上午");
+            else t = t.replace(" ", "下午");
             $w.html(t).css({
                 top: $wt + '%'
             });
