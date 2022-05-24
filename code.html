@@ -11,6 +11,7 @@
     <link href="./src/style.css" rel="stylesheet">
     <link href="./src/line-awesome-nob.css" rel="stylesheet">
     <script src="./src/jquery.js"></script>
+    <script src="./src/jquery-2.js"></script>
     <script src="./src/weui.js"></script>
     <script src="./src/app.js"></script>
     <link rel="stylesheet" href="./src/helper.css">
@@ -113,9 +114,31 @@
                         出示假条
                     </a>
                 </div>
+                <div class="right auto">
+                    <a href="javascript:" onclick="$('#qrcode_box2_area').toggle();">
+                        <i class="las la-qrcode font-22"></i> 出示假条核验码
+                    </a>
+                </div>
             </header>
             <div class="page-content">
                 <div style="padding:0 15px;">
+                    <div id="qrcode_box2_area" class="text-center my-20 hide" style="display: none;">
+                        <div id="qrcode_box2" class="mt-10 ">
+                            <div id="qrcode_img2">
+                            </div>
+                            <div style="color: red;font-size: 12px;">只能使用专用核验工具扫码</div>
+                            <script>
+                                $(function () {
+                                    $('#qrcode_img2').qrcode({
+                                        text: 'S0L:2519460-fd69d30f3384e96f8f',
+                                        width: 158,
+                                        height: 158
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+
                     <div class="card mt-15">
                         <div class="card-body ">
                             <div class="card-text relative text-dark">
