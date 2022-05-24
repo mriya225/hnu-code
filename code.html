@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
           content="width=device-width,initial-scale=1,user-scalable=no,shrink-to-fit=no,viewport-fit=cover">
-    <title>师大移动学工用户中心</title>
+    <title>河南师大智慧学工用户中心</title>
     <link href="./src/weui.css" rel="stylesheet">
     <link href="./src/bootstrap.css" rel="stylesheet">
     <link href="./src/style.css" rel="stylesheet">
@@ -85,6 +85,18 @@
             z-index: -1;
             color: rgba(0, 0, 0, 0.08);
         }
+
+        #ip1 {
+            font-weight: bold;
+        }
+
+        #ip7 {
+            font-weight: bold;
+            color: #ea3323;
+            display: block;
+            margin-top: 12px;
+            font-size: 1rem;
+        }
     </style>
 </head>
 
@@ -109,6 +121,7 @@
                             <div class="card-text relative text-dark">
                                 <p class="h2 text-center text-dark font-weight-light">
                                     请假条
+                                    <span id="ip7">河南师范大学</span>
                                 </p>
 
                                 <img id="approved_icon"
@@ -230,6 +243,7 @@
         const ip4 = document.querySelector('#ip4');
         const ip5 = document.querySelector('#ip5');
         const ip6 = document.querySelector('#ip6');
+        const ip7 = document.querySelector('#ip7');
         const time1 = document.querySelector('#time1');
         const time2 = document.querySelector('#time2');
         const time3 = document.querySelector('#time3');
@@ -243,7 +257,10 @@
         const gip6 = localStorage.getItem('ip6');
         if (gip1 != null) ip1.innerHTML += gip1;
         if (gip2 != null) ip2.innerHTML += gip2;
-        if (gip3 != null) ip3.innerHTML += gip3;
+        if (gip3 != null) {
+            ip3.innerHTML += gip3;
+            ip7.innerHTML += " " + gip3;
+        }
         if (gip4 != null) ip4.innerHTML += gip4;
         if (gip5 != null) ip5.innerHTML += gip5;
         if (gip6 != null) ip6.src = gip6;
